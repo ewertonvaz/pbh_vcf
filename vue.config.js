@@ -5,13 +5,13 @@ module.exports = {
   configureWebpack: {
     plugins: [
       new TerserPlugin({
-        sourceMap: false,
+        sourceMap: true,
       }),
     ],
   },
   chainWebpack: (config) => {
     config.plugin("html").tap((args) => {
-      args[0].minify = false;
+      args[0].minify = true;
       return args;
     });
     // config.module

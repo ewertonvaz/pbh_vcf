@@ -61,7 +61,14 @@ export default {
   },
 
   async getVideo(){
+    alert('O recurso de tocar video vai ser implementado em uma versão futura!');
     console.log('Video');
+    return {
+      text: 'O recurso de tocar video vai ser implementado em uma versão futura!',
+      type: 'video',
+      url: '',
+      format: ''
+    };
   }
 }
 

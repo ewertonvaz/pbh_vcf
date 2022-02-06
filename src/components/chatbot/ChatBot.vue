@@ -9,7 +9,7 @@
       :bubbleHeight="`${bubbleHeight + bubbleMargin + 2}px`"
     />
     <Bubble
-      width="60px"
+      :width="`${bubbleWidth}px`"
       :height="`${bubbleHeight}px`"
       :margin="`${bubbleMargin}px`"
       background_color="lightgray"
@@ -36,6 +36,7 @@ export default {
   data() {
     return {
       chat_visible: false,
+      bubbleWidth: 60,
       bubbleHeight: 60,
       bubbleMargin: 5,
     }

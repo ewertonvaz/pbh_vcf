@@ -24,9 +24,9 @@
 <script>
 import MessageTime from './mixins/MessageGetTimeMixin.vue';
 import Message from './ChatMessageComponent.vue'
-import engine from '../../engines/dialogflow.js';
+//import engine from '../../engines/dialogflow.js';
 // import engine from '../../engines/qnamaker';
-//import engine from '../../engines/pbah_bot';
+import engine from '../../engines/pbah_bot';
 //import engine from '../../engines/pbah_api_bot';
 
 export default {
