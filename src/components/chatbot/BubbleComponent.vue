@@ -61,6 +61,9 @@ export default {
 
 <style scoped>
   .bubble-background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: fixed;
     z-index: 10;
     border-radius: 50%;

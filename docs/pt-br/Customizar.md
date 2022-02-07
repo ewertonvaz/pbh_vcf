@@ -50,7 +50,11 @@ Após estas alterações verifique no navegador que agora o chatbot está locali
 
 ## ChatBot
 
-Este componente codifica a poisção global do chatbot e o seu título. Seu arquivo de código fonte está em: *src\components\chatbot\ChatBot.vue* e foi, em parte, transcrito abaixo:
+O componente de ChatBot é composto por dois sub componentes um delas é o avatar, também chamado de Bubble, e a outra a área de mensagens denominada ChatArea.
+
+Assim, vamos examinar a customização destas duas áreas de forma separada.
+
+O arquivo de código fonte correspondente está em: *src\components\chatbot\ChatBot.vue* e as alterações abaixo devem ser feitas neste arquivo.
 
 ```
 <template>
