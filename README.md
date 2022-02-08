@@ -42,7 +42,7 @@ Na seção de build / deploy abaixo serão fornecidas instruções de como compi
 
 ## Customizando a aparência
 
-Quando acessar a aplicação exemplo pela primeira vez é possível que você estranhe a aparência inicial do chatbot. Deixei assim de propósito para que você siga as instruções do [Guia de Customização](docs/pt-br/Customizar.md) e possa alterar a aparência do chatbot de forma a que ele fique com a aparência que você desejar.
+Quando acessar a aplicação exemplo pela primeira vez é possível que você estranhe a aparência inicial do chatbot e a ache simples. Deixei assim de propósito para que você siga as instruções do [Guia de Customização](docs/pt-br/Customizar.md) e possa alterar a aparência do chatbot de forma a que ele fique com a aparência que você desejar.
 
 Seguindo as instruções do guia acima você poderá alterar o avatar, o título, a posição na tela, as cores, linhas e tamanhos do seu chatbot.
 

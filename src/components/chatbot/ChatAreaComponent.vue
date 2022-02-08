@@ -1,18 +1,19 @@
 <template>
     <div class="chat-area" :class="animation_class" v-show="visible" :style="
         `width:${width}; height: ${height};
-        ${left};${top};margin:${margin};`"
+        ${left};${top};margin:${margin};
+        border:${border};`"
     >
-        <div class="chat-title">{{title}}</div>
+        <div class="chat-title" :style="`color:${title_text_color};background-color:${title_background_color};`">{{title}}</div>
         <div class="chat-content" v-chat-scroll>
             <template>
               <Message v-for="msg in chat" :key="msg.id" :message="msg">
               </Message>
             </template>
         </div>
-        <div class="chat-input">
-            <input class="text" type="text" v-on:keypress.enter="send" v-model="text_input" ref="textMsg">
-            <button class="button" @click="send">
+        <div class="chat-input" :style="`background-color:${text_area_background};`">
+            <input class="text" type="text" v-on:keypress.enter="send" v-model="text_input" ref="textMsg" :style="`color:${text_area_color};`">
+            <button class="chat-input-button" @click="send">
               <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" transform="rotate(90)">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
               </svg>      
@@ -39,8 +40,13 @@ export default {
     width: { type: String, default: '240px' },
     height: { type: String, default: '400px' },
     margin:  { type:String, default: '1px' },
+    border:  { type:String, default: '1px solid' },
     bubbleHeight: { type:String, default: '0px' },
-    title: { type:String, default: 'Título' }
+    title: { type:String, default: 'Título' },
+    title_background_color: { type:String, default: 'lightblue' },
+    title_text_color: { type:String, default: 'black' },
+    text_area_color: { type:String, default: 'gray' },
+    text_area_background: { type:String, default: 'greenyellow' },
   },
   data(){
     return {
@@ -50,9 +56,7 @@ export default {
         text_response: '',
         chat: [],
         welcome_message: {
-          text: "Seja bem vindo(a). Estou aqui para ajudar. Digite sua pergunta",
-          user: "bot",
-          time: this.getTime()
+          text: "Seja bem vindo(a). Estou aqui para ajudar. Digite sua pergunta"
         },
         current: 0,
         animation_class: 'scale-in-ver-bottom'
@@ -105,8 +109,10 @@ export default {
       if (!message){
         message = this.welcome_message
       }
-      message.id = ++this.current
-      this.chat.push(message);
+      message.id = ++this.current;
+      message.user = !message.user ? "bot" : message.user;
+      message.time = this.getTime();
+      this.chat[0] = message;
     },
     pushChatMessage(message) {
       this.chat.push( {
@@ -155,8 +161,6 @@ export default {
         background-color: gray;
         display: flex;
         flex-direction: column;
-        border-style: solid;
-        border-width: 1px;
         border-top-right-radius: 15px;
         border-top-left-radius: 15px;
         box-shadow: 2px 2px 5px lightgray;
@@ -166,19 +170,21 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: lightblue;
         height: 10%;
         border-top-right-radius: 15px;
         border-top-left-radius: 15px;
     }
 
     .chat-content{
-        background-color: white;
-        height: 80%;
-        overflow-y: scroll;
-        display: flex;
-        flex-direction: column;
+      background-color: white;
+      height: 80%;
+      overflow-y: scroll;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
+
+    .chat-content > :first-child { margin-top: auto }
 
     .chat-content .my-input {
         text-align: left;
@@ -191,7 +197,6 @@ export default {
     }
 
 .chat-input{
-        background-color: greenyellow;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -203,9 +208,10 @@ export default {
         width: 80%;
     }
 
-    .chat-input .button{
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
+    .chat-input .chat-input-button{
+      background-color: inherit;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
     }
 </style>

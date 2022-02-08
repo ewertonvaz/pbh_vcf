@@ -2,7 +2,7 @@
   <div id="chat-app">
     <ChatBot 
       position="bottom-right"
-      title="Um chat bot"
+      title="Um chat bot simples"
     />
   </div>
 </template>

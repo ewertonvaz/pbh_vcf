@@ -1,4 +1,4 @@
 To do:
 - Implementar arquivos de idiomas e locale para tradução da interface.
-
+- Definir o nome do chatbot como um parâmetro que será exibido nas mensagens.
 Done:

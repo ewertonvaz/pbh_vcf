@@ -3,7 +3,7 @@
       `width:${width};height:${height};
       background-color:${background_color};
       ${left};${top};margin:${margin};
-      border-style:${border};`"
+      border:${border};`"
     >
       <img class="bubble-avatar" :src="avatar" alt="">
     </div>

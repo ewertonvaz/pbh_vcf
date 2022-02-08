@@ -13,7 +13,7 @@
       :height="`${bubbleHeight}px`"
       :margin="`${bubbleMargin}px`"
       background_color="lightgray"
-      border="solid"
+      border="1px solid"
       :position="position"
       @bubble_click="bubble_click"
     />
@@ -46,6 +46,11 @@ export default {
       this.chat_visible = !this.chat_visible;
       this.$refs.chat_area.setVisible( this.chat_visible );
     }
+  },
+  mounted(){
+    this.$refs.chat_area.setWelcomeMessage({
+      text: "Neste espaço você informará uma mensagem de boas vindas !"
+    })
   }
 }
 </script>
