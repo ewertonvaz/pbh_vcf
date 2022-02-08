@@ -63,28 +63,40 @@ export default {
             });
             break;      
           default:
-            this.responses.push( { ...await this.getPokemon(question) } );
+            this.responses = await this.getPokemon(question);
             break;
         }
         return this.responses;
     },
 
     async getPokemon(name) {
-      var result = null;
+      let result = [];
       try {
         const pokemon = await axios.get(url+endpoints.pokemon + name);
         console.log(pokemon);
         if (pokemon.status == 404) {
-          result = { text: 'Desculpe, não encontrei! Vamos tentar de novo? Digite o nome de um Pokemon'};
+          result.push({ text: 'Desculpe, não encontrei! Vamos tentar de novo? Digite o nome de um Pokemon'});
         } else {
-          result = {
-            type: 'text',
-            text: `O nome do Pokemon escolhido é ${pokemon.data.name}`
-          };
+          const { front_default, front_shiny, back_default, back_shiny, other  } = pokemon.data.sprites;
+          const officialArtWork = other['official-artwork']['front_default'];
+          if (officialArtWork) { result.push({ type: 'image', url: officialArtWork }) }
+          if (front_default) { result.push({ type: 'image', url: front_default }) }
+          if (front_shiny) { result.push({ type: 'image', url: front_shiny }) }
+          if (back_default) { result.push({ type: 'image', url: back_default }) }
+          if (back_shiny) { result.push({ type: 'image', url: back_shiny }) }
+
+          if ( result.length > 0 ) {
+            return result;
+          } else {
+            result.push({
+              type: 'text',
+              text: `O nome do Pokemon escolhido é ${pokemon.data.name}, mas não encontrei nenhum sprite para ele 😞`
+            });
+          }
         }
       } catch(e) {
         console.log(e.toString())
-        result = { text: 'Desculpe, não encontrei! Vamos tentar de novo? Digite o nome de um Pokemon'};
+        result.push({ text: 'Desculpe, não encontrei! Vamos tentar de novo? Digite o nome de um Pokemon'});
       }
       return result;
     },

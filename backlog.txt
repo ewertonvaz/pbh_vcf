@@ -1,4 +1,6 @@
 To do:
 - Implementar arquivos de idiomas e locale para tradução da interface.
 - Definir o nome do chatbot como um parâmetro que será exibido nas mensagens.
+
 Done:
+08/02/2022 - Finalizado o engine pbah_api_bot.js para exibir as imagens obtidas a partir da API

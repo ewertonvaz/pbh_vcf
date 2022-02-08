@@ -49,7 +49,7 @@ export default {
   },
   mounted(){
     this.$refs.chat_area.setWelcomeMessage({
-      text: "Neste espaço você informará uma mensagem de boas vindas !"
+      html: "Neste espaço você informará uma <strong>mensagem de boas vindas</strong> !"
     })
   }
 }

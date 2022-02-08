@@ -1,6 +1,6 @@
 # Guia de Customização
 
-Neste guia vamos altera a aparência do chatbot, estas alterações serão feitas diretamene no código fonte dos componetes do Vue.js. Assim, dividi este guia em seções cada uma correspondendo a um componente.
+Neste guia vamos alterar a aparência do chatbot, estas alterações serão feitas diretamente no código fonte dos componetes do Vue.js. Assim, dividi este guia em seções cada uma correspondendo a um componente.
 
 As seções com o título ***Prática xx*** correspondem às alterações no código original que serão feitas durante este guia. Assim, caso queira ir diretamente ao código basta procurar as seções com este título.
 
@@ -117,8 +117,8 @@ Atributos:
 * **border**: especifica o tipo borda que envolverá a área de mensagens, também é uma string e pode definir de uma só vez os atributos: largura, estilo e cor da borda, p.ex: "4px dashed rgb(170, 50, 220)", definirá uma borda de 4px, tracejada e com a com RBG que corresponde aos valores red:170, green:50 e blue: 220. Para saber mais consulte esta [Referência](https://developer.mozilla.org/en-US/docs/Web/CSS/border).
 * **title_text_color**: define a cor do texto da área do título, seu valor é uma string e pode ser qualquer valor aceito pela especificação do CSS. Em caso de dúvida nos valores das cores consulte esta [Referência](https://developer.mozilla.org/pt-BR/docs/Web/CSS/color_value).
 * **title_background_color**: define a cor de fundo da área do título.Segue as mesmas regras do item *title_text_color* descrito acima.
-* **text_area_color**: define a cor do texto da área de input onde o usuário digita suas mensgens. Segue as mesmas regras do item *title_text_color* descrito acima.
-* **text_area_background**: define a cor de fundo da área de input onde o usuário digita suas mensgens. Segue as mesmas regras do item *title_text_color* descrito acima.
+* **text_area_color**: define a cor do texto da área de input onde o usuário digita suas mensagens. Segue as mesmas regras do item *title_text_color* descrito acima.
+* **text_area_background**: define a cor de fundo da área de input onde o usuário digita suas mensagens. Segue as mesmas regras do item *title_text_color* descrito acima.
 
 ***Prática 04:***
 
@@ -138,27 +138,32 @@ No arquivo *src\components\chatbot\ChatBot.vue* procure a seção *ChatArea* do 
  />
 ```
 
-Após fazer as alterações verifique no navegador que o ícone do chatbot é uma outra imagem e que foi retirada a borda que existia antes.
+Após fazer as alterações verifique no navegador as alterações no tamanho da áes de mensagens, nas cores do título e na área onde os usuários digitam as suas perguntas.
 
 Atributos:
 
-* **Mensagem de boas vindas**: correspondem aos valores de *bubbleWidth*, *bubbleHeight* e *bubbleMargin*. Este atributos, diferente dos outros que vimos até aqui, são valores numéricos pois serão usados em cálculos internos deste chatbot. Por este motivo a alteração de seus valores é feita em outra parte do código. Veja abaixo como alterar os valores deste atributos.
+* **Mensagem de boas vindas**: é possível definir a mensagem de boas vindas que será exibida pelo chatbot. Para fazer isto siga as instruções práticas abaixo.
 
 ***Prática 05:***
 
-No arquivo *src\components\chatbot\ChatBot.vue* procure a seção *data()* do componente, e altere *apenas* os valores dos atributos *bubbleWidth*, *bubbleHeight* e *bubbleMargin* para que fiquem da seguinte forma:
+No arquivo *src\components\chatbot\ChatBot.vue* procure a seção *mounted()* do componente, e altere *apenas* os valores do atributo *html* para que fique da seguinte forma:
 
 ```
- data() {
-    return {
-      ....
-      bubbleWidth: 100,
-      bubbleHeight: 100,
-      bubbleMargin: 10,
-    }
-  },
+ mounted(){
+    this.$refs.chat_area.setWelcomeMessage({
+      html: "Olá! Receba as boas vindas. Meu nome é <strong>Parabot</strong> e estou aqui para ajudar. Digite sua pergunta abaixo ou <strong>menu</strong> para ver as opções."
+    })
+  }
 ```
 
-**Observação**: Os valores devem ser especificado em *pixels*, pois é esta a unidade padrão utilizada neste chatbot.
+Após fazer esta última alteração verifique no navegador que a mensagem inicial exibida pelo chatbot foi alterada.
 
-Após fazer as alterações verifique no navegador que o avatar está maior e mais afastado das bordas lateriais e inferior do browser.
+Com isso concluímos este guia básico, porém existem ainda muitas possibilidade de customização neste chatbot para aqueles que conhecem um pouco de Vue.js e CSS. Se este é o seu caso recomendo que examine os códigos dos componentes.
+
+
+
+Uma outra personalização que é necessário fazer é a do **Engine** que vai ser utilizado pelo chatbot. Para entender como fazer isto consulte o [Guia de Engines](Engines.md).
+
+
+
+[Voltar ao início](../../README.md)
