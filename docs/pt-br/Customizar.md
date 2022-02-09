@@ -160,7 +160,7 @@ Após fazer esta última alteração verifique no navegador que a mensagem inici
 
 Com isso concluímos este guia básico, porém existem ainda muitas possibilidade de customização neste chatbot para aqueles que conhecem um pouco de Vue.js e CSS. Se este é o seu caso recomendo que examine os códigos dos componentes.
 
-
+Encerramos aqui as configurações básicas na aparência do chatbot.
 
 Uma outra personalização que é necessário fazer é a do **Engine** que vai ser utilizado pelo chatbot. Para entender como fazer isto consulte o [Guia de Engines](Engines.md).
 
