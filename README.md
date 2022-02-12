@@ -1,8 +1,12 @@
 # Parabah Vue Chatbot Frontend
 
+[English Docs](README-en.md)
+
 Este projeto é um front end para implementar a interface de um chatbot de forma rápida e simples. Foi desenvolvido em **Vue.js** e construído com o objetivo de ser um ponto de partida para o desenvolvimento de chatbots em websites.
 
 Partindo do código fornecido aqui é possível construir chatbots mais complexos e também integrar com serviços e frameworks de chatbots de mercado, como por exemplo: Google DialogfFlow, Microsoft Q&A maker, IBM Watson e outros.
+
+Apesar de fornecer uma boa base de código a qual já possibilita a implantação de um chat bot simples, este é um trabalho que ainda está em andamento de forma que cometários, pull requests ou qualquer outro tipo de feeedback serão bem vindos.
 
 **Características:**
 
@@ -19,9 +23,9 @@ Para utilizar esta biblioteca você necessitará instalar em seu ambiente de des
 - Node.js (https://nodejs.org/en/download/)
 - Uma IDE ou editor de código, recomendo o VSCode (https://code.visualstudio.com/download)
 
-A documentação está sendo estruturada de maneira a permitir que este projeto seja utilizado também por não programadores, de forma que a princípio não é necessário conhecimento prévio de Vue.js ou Javascript . 
+A documentação está sendo estruturada de maneira a permitir que este projeto seja utilizado também por não programadores, para que esta bilbioteca possa ser usada para usuários lowcode.
 
-Entretanto, você irá  se beneficiar mais deste projeto caso conheça pelo menos o básico de Vue.js e Javascript.
+Desta forma, a princípio não é necessário conhecimento prévio de Vue.js ou Javascript.  Entretanto, é claro que você irá  se beneficiar mais deste projeto caso conheça pelo menos o básico de Vue.js e Javascript.
 
 ## Instalação
 
@@ -48,7 +52,11 @@ Seguindo as instruções do guia acima você poderá alterar o avatar, o título
 
 ## Escolhendo o Engine
 
-O Parabah Vue Chatbot Frontend implementa uma interface genérica que se comunica através de mensagens com **Engines**, ou motores, de chatbot. Desta forma, é possível, alterando apenas uma linha de código, implementar a comunicação com vários serviços de chatbot.
+O Parabah Vue Chatbot Frontend implementa uma interface genérica que se comunica através de mensagens com **Engines**, ou motores, de chatbot. 
+
+Neste projeto a interface foi mantida, o máximo possível, desacoplada dos engines, de forma que é possível, alterando apenas uma linha de código, implementar a comunicação com vários serviços de chatbot diferentes.
+
+Além disso, seguindo as instruções e respeitando a interface é plenamente possível desenvolver seu próprio engine ou aprimorar os que são fornecidos com esta bibloteca.
 
 Neste projeto estão contido 4 engines padrão localizados na pasta *src\engines*, são eles: 
 

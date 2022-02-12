@@ -15,7 +15,7 @@ export default {
       // console.log(token);
       try {
         const responses = await this.detectIntent(question);
-        return Array(responses);
+        return responses;
       } catch(e) {
         console.log(e.toString())
         token = await generateJwt();
@@ -24,6 +24,9 @@ export default {
     },
 
     async detectIntent(text){
+       let responses = [];
+       let isMenu = false;
+       let options = [];
        const url="https://dialogflow.googleapis.com/v2/projects/" + projectId + "/agent/sessions/-:detectIntent";
         let data = {
           "queryInput": {
@@ -46,12 +49,39 @@ export default {
           headers
         })
         const intent = response.data.queryResult;
-        //console.log(intent);
-        const message = {
-          action: intent.action,
-          text: intent.fulfillmentText ? intent.fulfillmentText : intent.action
+        console.log(intent);
+        const { fulfillmentMessages, fulfillmentText } = intent;
+        if (fulfillmentText) {
+          responses.push( {
+            action: intent.action,
+            text: intent.fulfillmentText ? intent.fulfillmentText : intent.action
+          });
+        } else {
+          fulfillmentMessages.forEach(message => {
+            // console.log(message)
+            let text = '';
+            if ( message.text ){
+              text = message.text.text[0] ? message.text.text[0] : ''
+            } else if (message.quickReplies) {
+              isMenu = true;
+              text = message.quickReplies.title
+              message.quickReplies.quickReplies.forEach( opt => {
+                options.push({
+                  text : opt,
+                  callback: null
+                });
+              })
+            }
+            const response = {
+              type: isMenu ? 'menu' : 'text',
+              action: intent.action,
+              options,
+              text
+            }
+            responses.push(response);
+          });
         }
-        return message;
+        return responses;
       },
 }
 
