@@ -7,9 +7,13 @@
         <div class="chat-title" :style="`color:${title_text_color};background-color:${title_background_color};`">{{title}}</div>
         <div class="chat-content" v-chat-scroll>
             <template>
-              <Message v-for="msg in chat" :key="msg.id" :message="msg">
+              <Message v-for="msg in chat" :key="msg.id" :message="msg" :isTyping="isTyping">
               </Message>
             </template>
+            <template>
+              <MessageTyping v-if="isTyping" @timeout="timeout" />
+            </template>
+            <!-- <a href="#" class="d-none" ref="focus_bottom"></a> -->
         </div>
         <div class="chat-input" :style="`background-color:${text_area_background};`">
             <input class="text" type="text" v-on:keypress.enter="send" v-model="text_input" ref="textMsg" :style="`color:${text_area_color};`">
@@ -24,16 +28,19 @@
 
 <script>
 import MessageTime from './mixins/MessageGetTimeMixin.vue';
-import Message from './ChatMessageComponent.vue'
+import Message from './ChatMessageComponent.vue';
+import MessageTyping from './MessageTyping.vue';
+
 // import engine from '../../engines/dialogflow.js';
 // import engine from '../../engines/qnamaker';
-import engine from '../../engines/pbah_bot';
-//import engine from '../../engines/pbah_api_bot';
+//import engine from '../../engines/pbah_bot';
+ import engine from '../../engines/pbah_api_bot';
 
 export default {
   mixins: [MessageTime],
   components: {
-    Message
+    Message,
+    MessageTyping
   },
   props: {
     position: { type: String, default: 'top-left' },
@@ -50,16 +57,17 @@ export default {
   },
   data(){
     return {
-        visible: false,
-        content: '',
-        text_input: '',
-        text_response: '',
-        chat: [],
-        welcome_message: {
-          text: "Seja bem vindo(a). Estou aqui para ajudar. Digite sua pergunta"
-        },
-        current: 0,
-        animation_class: 'scale-in-ver-bottom'
+      isTyping: false,
+      visible: false,
+      content: '',
+      text_input: '',
+      text_response: '',
+      chat: [],
+      welcome_message: {
+        text: "Seja bem vindo(a). Estou aqui para ajudar. Digite sua pergunta"
+      },
+      current: 0,
+      animation_class: 'scale-in-ver-bottom'
     }
   },
   methods: {
@@ -85,9 +93,10 @@ export default {
           this.receive(this.text_input)
           this.text_input = ""
         }
-      this.$refs.textMsg.focus();
     },
     async receive(question){
+      console.log(this.scrollHeight);
+      this.isTyping = true;
       const responses = await engine.receive(question);
       console.log(responses);
       responses.forEach(response => {
@@ -105,6 +114,9 @@ export default {
           url
         });
       });
+      // this.scrollBottom();
+      this.$refs.textMsg.focus();
+      this.isTyping = false;
     },
     setWelcomeMessage(message){
       if (!message){
@@ -120,6 +132,12 @@ export default {
         id: ++this.current,
         ...message
       })
+    },
+    timeout(){
+      this.isTyping = false;
+    },
+    scrollBottom(){
+      this.$refs.focus_bottom.focus();
     }
   },
   computed: {

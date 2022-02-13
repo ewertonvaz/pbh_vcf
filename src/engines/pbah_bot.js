@@ -9,6 +9,7 @@ function detectIntent(text){
 }
 
 var responses = [];
+//const timeout = 5;
 
 export default {
   async receive (question) {
@@ -34,6 +35,7 @@ export default {
         responses = Array({ text: 'Desculpe, não entendi! Para saber as opções disponíveis digite: menu'});
         break;
     }
+    // setTimeout( () => responses, timeout * 1000);
     return responses;
   },
   

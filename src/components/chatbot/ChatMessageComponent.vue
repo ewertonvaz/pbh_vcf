@@ -23,7 +23,7 @@ import MessageTime from './mixins/MessageGetTimeMixin.vue';
 import MessageText from './MessageText.vue';
 import MessageOptions from './MessageOptions.vue';
 import MessageImage from './MessageImage.vue';
-import MessageAudio from './MessageAudio.vue'
+import MessageAudio from './MessageAudio.vue';
 
 export default {
   mixins: [MessageTime],
@@ -57,7 +57,7 @@ export default {
             ...callBackMsg
           })
         }
-      }
+      },
     },
     computed:{
       className(){
@@ -67,7 +67,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
  .chat-message{
     padding: 8px;
     text-align: left;

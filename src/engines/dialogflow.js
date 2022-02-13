@@ -50,38 +50,48 @@ export default {
         })
         const intent = response.data.queryResult;
         console.log(intent);
-        const { fulfillmentMessages, fulfillmentText } = intent;
+        const { fulfillmentMessages, fulfillmentText, action } = intent;
+        
+        if(!fulfillmentMessages) {
+          responses.push( {
+            action,
+            text: fulfillmentText ? fulfillmentText : action
+          });
+          return responses;
+        }
+
         if (fulfillmentText) {
           responses.push( {
-            action: intent.action,
-            text: intent.fulfillmentText ? intent.fulfillmentText : intent.action
+            action,
+            text: fulfillmentText ? fulfillmentText : action
           });
-        } else {
-          fulfillmentMessages.forEach(message => {
-            // console.log(message)
-            let text = '';
-            if ( message.text ){
-              text = message.text.text[0] ? message.text.text[0] : ''
-            } else if (message.quickReplies) {
-              isMenu = true;
-              text = message.quickReplies.title
-              message.quickReplies.quickReplies.forEach( opt => {
-                options.push({
-                  text : opt,
-                  callback: null
-                });
-              })
-            }
-            const response = {
-              type: isMenu ? 'menu' : 'text',
-              action: intent.action,
-              options,
-              text
-            }
-            responses.push(response);
-          });
+          return responses;
         }
-        return responses;
+
+        fulfillmentMessages.forEach(message => {
+          // console.log(message)
+          let text = '';
+          if ( message.text ) {
+            text = message.text.text[0] ? message.text.text[0] : ''
+          } else if (message.quickReplies) {
+            isMenu = true;
+            text = message.quickReplies.title
+            message.quickReplies.quickReplies.forEach( opt => {
+              options.push({
+                text : opt,
+                callback: null
+               });
+            })
+          }
+          const response = {
+            type: isMenu ? 'menu' : 'text',
+            action: intent.action,
+            options,
+            text
+          }
+          responses.push(response);
+        });
+      return responses;
       },
 }
 
