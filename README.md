@@ -54,7 +54,7 @@ Seguindo as instruções do guia acima você poderá alterar o avatar, o título
 
 O Parabah Vue Chatbot Frontend implementa uma interface genérica que se comunica através de mensagens com **Engines**, ou motores, de chatbot. 
 
-Neste projeto a interface foi mantida, o máximo possível, desacoplada dos engines, de forma que é possível, alterando apenas uma linha de código, implementar a comunicação com vários serviços de chatbot diferentes.
+A interface do chatbot foi mantida, o máximo possível, desacoplada dos engines, de forma que é possível, alterando apenas uma linha de código, implementar a comunicação com vários serviços de chatbot diferentes.
 
 Além disso, seguindo as instruções e respeitando a interface é plenamente possível desenvolver seu próprio engine ou aprimorar os que são fornecidos com esta bibloteca.
 

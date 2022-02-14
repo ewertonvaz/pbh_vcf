@@ -79,11 +79,11 @@ export default {
         } else {
           const { front_default, front_shiny, back_default, back_shiny, other  } = pokemon.data.sprites;
           const officialArtWork = other['official-artwork']['front_default'];
-          if (officialArtWork) { result.push({ type: 'image', url: officialArtWork }) }
           if (front_default) { result.push({ type: 'image', url: front_default }) }
           if (front_shiny) { result.push({ type: 'image', url: front_shiny }) }
           if (back_default) { result.push({ type: 'image', url: back_default }) }
           if (back_shiny) { result.push({ type: 'image', url: back_shiny }) }
+          if (officialArtWork) { result.push({ type: 'image', url: officialArtWork }) }
 
           if ( result.length > 0 ) {
             return result;

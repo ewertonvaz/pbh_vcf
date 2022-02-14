@@ -5,15 +5,15 @@
         border:${border};`"
     >
         <div class="chat-title" :style="`color:${title_text_color};background-color:${title_background_color};`">{{title}}</div>
-        <div class="chat-content" v-chat-scroll>
+        <div class="chat-content" ref="chat_content" v-chat-scroll>
             <template>
               <Message v-for="msg in chat" :key="msg.id" :message="msg" :isTyping="isTyping">
               </Message>
             </template>
             <template>
-              <MessageTyping v-if="isTyping" @timeout="timeout" />
+              <MessageTyping v-show="isTyping" @timeout="timeout" />
             </template>
-            <!-- <a href="#" class="d-none" ref="focus_bottom"></a> -->
+            <a href="#" class="d-none" ref="focus_bottom"></a>
         </div>
         <div class="chat-input" :style="`background-color:${text_area_background};`">
             <input class="text" type="text" v-on:keypress.enter="send" v-model="text_input" ref="textMsg" :style="`color:${text_area_color};`">
@@ -34,7 +34,7 @@ import MessageTyping from './MessageTyping.vue';
 // import engine from '../../engines/dialogflow.js';
 // import engine from '../../engines/qnamaker';
 //import engine from '../../engines/pbah_bot';
- import engine from '../../engines/pbah_api_bot';
+import engine from '../../engines/pbah_api_bot';
 
 export default {
   mixins: [MessageTime],
@@ -95,9 +95,9 @@ export default {
         }
     },
     async receive(question){
-      console.log(this.scrollHeight);
       this.isTyping = true;
       const responses = await engine.receive(question);
+      this.isTyping = false;
       console.log(responses);
       responses.forEach(response => {
         const { type, text, html, options, callback, payload, url } = response;
@@ -116,7 +116,6 @@ export default {
       });
       // this.scrollBottom();
       this.$refs.textMsg.focus();
-      this.isTyping = false;
     },
     setWelcomeMessage(message){
       if (!message){
@@ -137,7 +136,13 @@ export default {
       this.isTyping = false;
     },
     scrollBottom(){
-      this.$refs.focus_bottom.focus();
+      //this.$refs.focus_bottom.focus();
+      console.log('height', this.$refs.chat_content.scrollHeight);
+      console.log('client height', this.$refs.chat_content.clientHeight);
+      if (this.$refs.chat_content.scrollHeight > this.$refs.chat_content.clientHeight) {
+        this.$refs.chat_content.scrollTop = this.$refs.chat_content.scrollHeight - this.$refs.chat_content.clientHeight + 10;
+      }
+      console.log('top:', this.$refs.chat_content.scrollTop);
     }
   },
   computed: {

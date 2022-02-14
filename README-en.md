@@ -52,7 +52,11 @@ Following this guide you will learn how to change the chatbot: avatar, title, sc
 
 The Parabah Vue Chatbot Frontend library implements a generic interface which communicates through messages with another piece of software that I called in this project as chatbot **Engines**.
 
-Neste projeto a interface foi mantida, o máximo possível, desacoplada dos engines, de forma que é possível, alterando apenas uma linha de código, implementar a comunicação com vários serviços de chatbot diferentes.
+The chatbot interface was kept at maximum possible decoupled from the engines as so it's possible, cahnging only one line of code, to implements the communication with various chtabot engines.
+
+The chatbot interface was kept at maximum possible decoupled from the engines this way it's possible, changing only one line of code, to implement the communication with various chatbot engines.
+
+
 
 Além disso, seguindo as instruções e respeitando a interface é plenamente possível desenvolver seu próprio engine ou aprimorar os que são fornecidos com esta bibloteca.
 
