@@ -82,5 +82,3 @@ Após executar o comando acima será criada na pasta do projeto a subpasta *chat
 ## Agradecimento
 
 Já agradeço por ter baixado e experimentado este projeto, espero que tenha sido útil de alguma forma, e peço que, se por acaso você gostar dele, me ajude dando uma estrela ⭐aqui no GitHub.
-
-Agora se você gostou muito pode também, mas só se quiser mesmo, clicar na xícara ao lado e me pagar um café. [☕](https://www.buymeacoffee.com/ewertonvazb)

@@ -56,22 +56,22 @@ The chatbot interface was kept at maximum possible decoupled from the engines as
 
 The chatbot interface was kept at maximum possible decoupled from the engines this way it's possible, changing only one line of code, to implement the communication with various chatbot engines.
 
+Following the docks instructions and programming accordingly to interface definition is fully possible to develop you own engine or improve the ones provide with this library.
+
+In this project there are four default engines located at *src\engines* folder, as described below:
+
+- **pbah_bot.js** : it's the default engine that implements a local server access chatbot and contains a demo of the resources as audio an image messages that are available in this project.
+- **pbah_api_bot.js** : this engine contains a sample of how to access an API using this chatbot library.
+- **dialogflow.js** : implements a simple engine with the code necessary to access the Google Dialogflow service.
+- **qnamaker.js** :  a code sample that demonstrates how to interact with Microsoft QnA Maker.
+
+Keep in mind that this engines are simplified sample and my intention was give to you a starting point from which you can develop chatbot apps more sophisticated accordingly your needs.
+
+You can read th [Engine Guide](docs/en-en/Engines.md) to learn how to change the provided engines above and the basic principles to develop your own engines from the samples provided in this library.
+
+## Build for production and Deploy
 
 
-Além disso, seguindo as instruções e respeitando a interface é plenamente possível desenvolver seu próprio engine ou aprimorar os que são fornecidos com esta bibloteca.
-
-Neste projeto estão contido 4 engines padrão localizados na pasta *src\engines*, são eles: 
-
-- **pbah_bot.js** : é o engine default, implementa um chatbot com acesso ao servidor local e contém a demonstração dos recursos, como tipos de mensagens, disponíveis atualmente neste projeto.
-- **pbah_api_bot.js** : este engine contém um exemplo de como acessar uma API usando esta bibloteca.
-- **dialogflow.js** : contém o código necessário para acessar o Google Dialogflow.
-- **qnamaker.js** : contém o código necessário para acessar o Microsoft Q&A Maker.
-
-Tenha em mente que estes engines são exemplos simplificados e meu objetivo foi fornecer a você um ponto de partida a partir do qual possa desenvolver aplicativos de chatbot mais sofisticados conforme sua necessidade.
-
-Você poder acessar o [Guia de Engines](docs/pt-br/Engines.md) para aprender como alternar entre os motores acima e os princípios básicos para desenvolver os seus próprios engines a partir dos exemplos desta biblioteca.
-
-## Build e Deploy para produção
 
 Após realizar as alterações que você deseja e escolher o engine desejado, execute o comando abaixo para compilar, minificar e gerar os arquivos do chatbot que poderão ser usados em produção:
 
@@ -84,5 +84,3 @@ Após executar o comando acima será criada na pasta do projeto a subpasta *chat
 ## Agradecimento
 
 Já agradeço por ter baixado e experimentado este projeto, espero que tenha sido útil de alguma forma, e peço que, se por acaso você gostar dele, me ajude dando uma estrela ⭐aqui no GitHub.
-
-Agora se você gostou muito pode também, mas só se quiser mesmo, clicar na xícara ao lado e me pagar um café. [☕](https://www.buymeacoffee.com/ewertonvazb)
